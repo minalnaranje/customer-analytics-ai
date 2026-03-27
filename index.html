@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataWise - Strategic Intelligence as a Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1A2332;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            padding: 20px 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1A2332;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+        }
+        
+        .bar {
+            width: 8px;
+            background: #1A2C3D;
+            border-radius: 2px;
+        }
+        
+        .bar-1 { height: 16px; }
+        .bar-2 { height: 22px; background: #7F8C8D; }
+        .bar-3 { height: 28px; background: #4ECDC4; }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav a {
+            color: #1A2332;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav a:hover {
+            color: #2E5CFF;
+        }
+        
+        .cta-btn {
+            background: #2E5CFF;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .cta-btn:hover {
+            background: #1E4CDF;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1A2332 0%, #2E5CFF 100%);
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            background: white;
+            color: #2E5CFF;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .hero-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: #F8FAFB;
+            padding: 60px 40px;
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2E5CFF;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #7F8C8D;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            text-align: center;
+            color: #7F8C8D;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .feature-card {
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: #2E5CFF;
+            box-shadow: 0 8px 20px rgba(46, 92, 255, 0.15);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #2E5CFF;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #7F8C8D;
+            line-height: 1.8;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: #F8FAFB;
+            padding: 100px 40px;
+        }
+        
+        .how-it-works-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: #2E5CFF;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .step p {
+            color: #7F8C8D;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #7F8C8D;
+            line-height: 1.8;
+        }
+        
+        .values {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .value-item {
+            border-left: 4px solid #2E5CFF;
+            padding-left: 20px;
+        }
+        
+        .value-item h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .value-item p {
+            font-size: 14px;
+            color: #7F8C8D;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: #1A2332;
+            color: white;
+            padding: 100px 40px;
+        }
+        
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .contact p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: 2px solid white;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .contact-link:hover {
+            background: white;
+            color: #1A2332;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0D1117;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer p {
+            opacity: 0.7;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .stats-grid,
+            .features-grid,
+            .steps,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="bar bar-1"></div>
+                    <div class="bar bar-2"></div>
+                    <div class="bar bar-3"></div>
+                </div>
+                <span>dataWise</span>
+            </div>
+            <div class="nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#product">Product</a>
+                <a href="#contact">Contact</a>
+                <a href="https://customer-analytics-ai-7d4vewgf2kvdmxuajk6f78.streamlit.app" class="cta-btn" target="_blank">Try Free</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Strategic Intelligence in 90 Seconds</h1>
+            <p>AI-powered customer analytics that deliver actionable recommendations instantly</p>
+            <a href="https://customer-analytics-ai-7d4vewgf2kvdmxuajk6f78.streamlit.app" class="hero-cta" target="_blank">Try Free</a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">90s</div>
+                <div class="stat-label">Processing Time</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Time Savings</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Reliability</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="product">
+        <h2 class="section-title">What DataWise Delivers</h2>
+        <p class="section-subtitle">Three core capabilities that transform customer data into business strategy</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">1</div>
+                <h3>Strategic Recommendations</h3>
+                <p>Get 3 prioritized actions with clear reasoning, expected impact, and target segments. Color-coded by urgency (High/Medium/Low) for immediate clarity.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">2</div>
+                <h3>Instant Analysis</h3>
+                <p>Upload your customer CSV and receive insights in 90 seconds. No setup, no dashboards to learn, no complex queries. Just answers.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">3</div>
+                <h3>Professional Reports</h3>
+                <p>Stakeholder-ready HTML reports with visual priority coding. Share directly with executives, investors, or team members.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-it-works-content">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">From data to decision in three simple steps</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload CSV</h3>
+                    <p>Drop your customer data file with demographics, purchases, and behavior</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>AI Analyzes</h3>
+                    <p>90 seconds of strategic analysis using proven business frameworks</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Recommendations</h3>
+                    <p>Receive prioritized actions with clear reasoning and expected impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">About DataWise</h2>
+        
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>The Problem We Solve</h3>
+                <p>83% of small businesses can't afford customer analytics. Consultants cost $5,000 and take weeks. Complex platforms require days of setup and hours to learn.</p>
+                
+                <p>Businesses have customer data but lack the time and expertise to turn it into strategy. They're forced to choose between expensive consultants, complex tools, or gut decisions.</p>
+                
+                <h3 style="margin-top: 40px;">Our Mission</h3>
+                <p>We democratize strategic intelligence. Every business should have access to consultant-quality insights, regardless of size or budget.</p>
+                
+                <p>DataWise delivers what a $200/hour consultant does, but in 90 seconds for $0.0015. We're making data-driven decision-making accessible to everyone.</p>
+            </div>
+            
+            <div class="values">
+                <h3 style="margin-bottom: 30px;">Our Values</h3>
+                
+                <div class="value-item">
+                    <h4>Simplicity</h4>
+                    <p>Complex analysis, simple interface. No PhD required.</p>
+                </div>
+                
+                <div class="value-item">
+                    <h4>Speed</h4>
+                    <p>Insights in seconds, not weeks. Time is your most valuable resource.</p>
+                </div>
+                
+                <div class="value-item">
+                    <h4>Accessibility</h4>
+                    <p>Enterprise insights for everyone, not just Fortune 500 companies.</p>
+                </div>
+                
+                <div class="value-item">
+                    <h4>Transparency</h4>
+                    <p>Clear reasoning for every recommendation. No black box AI.</p>
+                </div>
+                
+                <div class="value-item">
+                    <h4>Affordability</h4>
+                    <p>$0.0015 per analysis vs. $50/hour consultants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Get in Touch</h2>
+            <p>Ready to transform your customer data into strategic insights?</p>
+            
+            <a href="https://datawise-ai.streamlit.app" class="hero-cta" target="_blank" style="background: #2E5CFF; color: white;">Try DataWise Now</a>
+            
+            <div class="contact-links">
+                <a href="mailto:naranje.m@northeastern.edu" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/minal-naranje-460394247" class="contact-link" target="_blank">LinkedIn</a>
+                <a href="https://github.com/minalnaranje" class="contact-link" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 DataWise | Strategic Intelligence as a Service</p>
+        <p style="margin-top: 10px;">Built by Minal Naranje | Northeastern University</p>
+    </footer>
+</body>
+</html>
